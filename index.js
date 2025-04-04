@@ -6,12 +6,8 @@ app.get('/', (req, res) => {
     res.send('Hello World from Node.js App!');
 });
 
-let server = null;
-
-if (require.main === module) {
-    server = app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-}
+const server = app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 module.exports = { app, server };
