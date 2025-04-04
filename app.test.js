@@ -1,16 +1,14 @@
-//test('Basic test to verify Jest setup', () => {
-  //  expect(1 + 1).toBe(2);
-  //});
-
-
-  // app.test.js
 const request = require('supertest');
-const app = require('./index');  // Make sure to export your app in app.js
+const { app, server } = require('./index');  // Import both app and server
 
 describe('GET /', () => {
+    afterAll(() => {
+        server.close();  // Properly close the server after tests to avoid Jest warnings
+    });
+
     it('should return a Hello World message', async () => {
-        const res = await request(app).get('/');
-        expect(res.statusCode).toEqual(200);
-        expect(res.text).toContain('Hello World from Node.js App!');
+        const response = await request(app).get('/');
+        expect(response.status).toBe(200);
+        expect(response.text).toBe('Hello World from Node.js App!');
     });
 });
