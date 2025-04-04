@@ -1,9 +1,11 @@
 const request = require('supertest');
-const { app, server } = require('./index');  // Import both app and server
+const { app, server } = require('./index');
 
 describe('GET /', () => {
-    afterAll(() => {
-        server.close();  // Properly close the server after tests to avoid Jest warnings
+    afterAll((done) => {
+        if (server) {
+            server.close(done);  // Properly close the server with a callback to ensure Jest knows it's done
+        }
     });
 
     it('should return a Hello World message', async () => {
