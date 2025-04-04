@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3001;  // Make port configurable for tests
+const PORT = process.env.PORT || 3001;
 
 app.get('/', (req, res) => {
     res.send('Hello World from Node.js App!');
@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 
 let server = null;
 
-if (require.main === module) {  // Only start the server if it's not being imported
+if (require.main === module) {
     server = app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });

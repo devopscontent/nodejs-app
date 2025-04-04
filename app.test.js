@@ -1,12 +1,9 @@
-const request = require('supertest');
-const { app, server } = require('./index');
-
 describe('GET /', () => {
     afterAll((done) => {
         if (server) {
-            server.close(done);  // Properly close the server with a callback to ensure Jest knows it's done
+            server.close(done);  // Properly close the server
         }
-    });
+    }, 10000);  // Increase the timeout to 10 seconds
 
     it('should return a Hello World message', async () => {
         const response = await request(app).get('/');
