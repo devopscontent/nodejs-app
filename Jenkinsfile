@@ -21,7 +21,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'npm test || echo "No test cases found."'
+                // Run tests and fail the pipeline if tests fail
+                sh 'npm test'
             }
         }
 
@@ -47,4 +48,3 @@ pipeline {
         }
     }
 }
-
